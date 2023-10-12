@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+![](images/⁬fish3.png){fig-align="center" width="406"}
