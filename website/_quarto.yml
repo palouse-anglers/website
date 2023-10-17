@@ -1,16 +1,31 @@
 project:
   type: website
 
+
 website:
-  title: "Palouse Anglers"
-  favicon: "/images/fish3.png"
+  favicon: "fish3.png"
   twitter-card: true
+  title: "Palouse Anglers"
   navbar:
-    logo: "/images/stonep.png"
+    tools:
+      - icon: instagram
+        href: https://instagram.com
+      - icon: github
+        menu:
+          - text: Source Code
+            url:  https://code.com
+          - text: Report a Bug
+            url:  https://bugs.com
     left:
       - href: index.qmd
         text: Home
       - about.qmd
+      - text: "More"
+        menu:
+        - maps.qmd
+        - about.qmd
+    
+  
 
 
 margin-header: |

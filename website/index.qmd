@@ -1,3 +1,6 @@
 ---
-title: "Website"
+title: ""
+logo: "/images/stonep.png"
 ---
+
+![The Hills Have Flies](images/IMG_3BDE65D40D16-1.JPEG){fig-align="center" width="423"}
