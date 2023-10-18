@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 662f8aad-9154-4b7f-be63-dda83e298dab
+      url: 'https://palouseanglers.com'

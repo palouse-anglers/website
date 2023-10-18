@@ -3,34 +3,29 @@ project:
 
 
 website:
-  favicon: "fish3.png"
+  favicon: "images/favicon.ico"
   twitter-card: true
   title: "Palouse Anglers"
   navbar:
     tools:
       - icon: instagram
-        href: https://instagram.com
+        href: https://www.instagram.com/palouseanglers/
       - icon: github
         menu:
-          - text: Source Code
-            url:  https://code.com
-          - text: Report a Bug
-            url:  https://bugs.com
+          - text: This Website
+            url:  https://github.com/palouse-anglers/website
+          - text: Suggestions/Bugs
+            url:  https://github.com/palouse-anglers/website/issues
     left:
       - href: index.qmd
         text: Home
       - about.qmd
-      - text: "More"
+      - text: "Trip Planner"
         menu:
         - maps.qmd
-        - about.qmd
+        - flows.qmd
     
   
-
-
-margin-header: |
-  ![Logo image](/images/stonep.png)
-
 format:
   html:
     theme: cosmo

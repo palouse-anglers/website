@@ -2,6 +2,61 @@
 title: "Maps"
 ---
 
-[ST Joe River at Calder, ID - 12414500](https://waterdata.usgs.gov/monitoring-location/12414500/#parameterCode=00060&period=P365D&showMedian=true&timeSeriesId=46988 "USGS Stream Gauge")
+Water Quality:
 
 [How's My Waterway App](https://mywaterway.epa.gov/community/Pullman,%20WA,%20USA/aquatic-life "Search local waters")
+
+Saint Joe
+
+```{r ,message=FALSE}
+library(leaflet)
+library(leaflet.providers)
+library(leaflet.extras)
+library(tidyverse)
+library(geojsonsf)
+```
+
+```{r}
+
+
+watersheds <- data.frame(
+  Name=c("St Joe","NF CDA","Lochsa","Grande Ronde","NF Clearwater"),
+  HUC8=c("17010304","17010301","17060303","17060106","17060308" )) %>%
+  mutate(url=paste0("https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/4/query?where=HUC8+%3D+%27",HUC8,"%27+&text=&objectIds=&time=&geometry=&geometryType=esriGeometryPolygon&inSR=&spatialRel=esriSpatialRelContains&distance=&units=esriSRUnit_Foot&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=geojson"),
+         sf=map(url,~geojson_sf(.x)) %>% 
+           set_names(Name)
+         )
+
+# watersheds$sf[['St Joe']]
+map_maker <- function(sf_map){
+  
+opt <- leaflet::WMSTileOptions(format="image/png32", version="1.3.0", minZoom=3, maxZoom=16,transparent = TRUE)
+
+ leaflet() %>%
+   addTiles() %>%
+  addWMSTiles(baseUrl = "https://basemap.nationalmap.gov/arcgis/services/USGSHydroCached/MapServer/WMSServer?",layers="0",options = opt,group="Hydro") %>%
+ addProviderTiles("Esri.WorldImagery", group="Imagery") %>%
+  addProviderTiles("CartoDB.DarkMatter", group="Dark")%>%
+ addProviderTiles("Esri.NatGeoWorldMap", group="Topo") %>%
+ addProviderTiles("OpenStreetMap", group="Street") %>%
+ addPolygons(data= sf_map,group = sf_map$name,fillOpacity = 0) %>%
+  addSearchOSM() %>%
+  addLayersControl(overlayGroups = c(sf_map$name,"Hydro"),
+baseGroups = c("Imagery","Dark","Topo","Street"))%>%
+   leaflet.extras::addFullscreenControl() %>%
+   leafem::addMouseCoordinates() %>% 
+   hideGroup("Hydro")
+}
+
+
+
+
+
+```
+
+# St. Joe
+
+```{r}
+map_maker(watersheds$sf[['St Joe']])
+
+```
