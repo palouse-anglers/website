@@ -4,16 +4,20 @@ execute:
   echo: false
 ---
 
-```{r ,message=FALSE}
+```{r ,message=FALSE,warning=FALSE}
 library(leaflet)
 library(leaflet.providers)
 library(leaflet.extras)
 library(tidyverse)
 library(geojsonsf)
+library(sf)
 ```
 
-```{r}
+```{r,message=FALSE }
 
+#| warning: FALSE
+#| message: FALSE 
+#| include: false
 
 watersheds <- data.frame(
   Name=c("St Joe","NF CDA","Lochsa","Grande Ronde","NF Clearwater"),
@@ -52,20 +56,20 @@ baseGroups = c("Imagery","Dark","Topo","Street"))%>%
 
 # St. Joe
 
-```{r}
+```{r,message=FALSE, warning=FALSE}
 map_maker(watersheds$sf[['St Joe']])
 
 ```
 
 # NF Clearwater
 
-```{r}
+```{r,message=FALSE, warning=FALSE}
 map_maker(watersheds$sf[['NF Clearwater']])
 ```
 
 # Grande Ronde
 
-```{r}
+```{r,message=FALSE, warning=FALSE}
 map_maker(watersheds$sf[['Grande Ronde']])
 
 ```
