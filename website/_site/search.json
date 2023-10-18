@@ -4,7 +4,7 @@
     "href": "maps.html",
     "title": "Maps",
     "section": "",
-    "text": "Water Quality:\nHow’s My Waterway App"
+    "text": "Warning: There were 5 warnings in `mutate()`.\nThe first warning was:\nℹ In argument: `sf = map(url, ~geojson_sf(.x)) %&gt;% set_names(Name)`.\nCaused by warning in `readLines()`:\n! incomplete final line found on 'https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer/4/query?where=HUC8+%3D+%2717010304%27+&text=&objectIds=&time=&geometry=&geometryType=esriGeometryPolygon&inSR=&spatialRel=esriSpatialRelContains&distance=&units=esriSRUnit_Foot&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=&havingClause=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&featureEncoding=esriDefault&f=geojson'\nℹ Run `dplyr::last_dplyr_warnings()` to see the 4 remaining warnings.\n\n\n\nSt. Joe\n\n\nThe legacy packages maptools, rgdal, and rgeos, underpinning the sp package,\nwhich was just loaded, will retire in October 2023.\nPlease refer to R-spatial evolution reports for details, especially\nhttps://r-spatial.org/r/2023/05/15/evolution4.html.\nIt may be desirable to make the sf package available;\npackage maintainers should consider adding sf to Suggests:.\nThe sp package is now running under evolution status 2\n     (status 2 uses the sf package in place of rgdal)\n\n\n\n\n\n\n\n\nNF Clearwater\n\n\n\n\n\n\n\n\nGrande Ronde"
   },
   {
     "objectID": "flows.html",

@@ -1,12 +1,8 @@
 ---
 title: "Maps"
+execute: 
+  echo: false
 ---
-
-Water Quality:
-
-[How's My Waterway App](https://mywaterway.epa.gov/community/Pullman,%20WA,%20USA/aquatic-life "Search local waters")
-
-Saint Joe
 
 ```{r ,message=FALSE}
 library(leaflet)
@@ -58,5 +54,18 @@ baseGroups = c("Imagery","Dark","Topo","Street"))%>%
 
 ```{r}
 map_maker(watersheds$sf[['St Joe']])
+
+```
+
+# NF Clearwater
+
+```{r}
+map_maker(watersheds$sf[['NF Clearwater']])
+```
+
+# Grande Ronde
+
+```{r}
+map_maker(watersheds$sf[['Grande Ronde']])
 
 ```
