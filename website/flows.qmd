@@ -1,5 +1,0 @@
----
-title: "Flows"
----
-
-[ST Joe River at Calder, ID - 12414500](https://waterdata.usgs.gov/monitoring-location/12414500/#parameterCode=00060&period=P365D&showMedian=true&timeSeriesId=46988)
