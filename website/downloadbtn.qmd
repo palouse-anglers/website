@@ -1,0 +1,69 @@
+---
+title: "Leaflet Map with PNG Download Button"
+output: 
+  html_document:
+    self_contained: true
+---
+
+
+```{r setup, include=FALSE}
+# Include necessary R packages
+library(leaflet)
+library(htmltools)
+library(htmlwidgets)
+```
+
+
+
+```{r}
+# Create the Leaflet map
+# Create the Leaflet map and give it an ID
+mymap <- leaflet() %>% addTiles() %>% 
+  addMarkers(lng=174.768, lat=-36.852, popup="Auckland")
+
+# Render the Leaflet map with an ID
+mymap %>% 
+  htmlwidgets::onRender("function(el, x) {
+    el.id = 'leaflet-map';
+  }")
+
+```
+
+```{=html}
+<!-- Include Leaflet and leaflet.browser.print libraries -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.browser.print/dist/leaflet.browser.print.js"></script>
+
+<!-- CSS to hide all elements except the map when printing -->
+<style type="text/css">
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    #leaflet-map, #leaflet-map * {
+      visibility: visible;
+    }
+    #leaflet-map {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+</style>
+
+<!-- JavaScript to enable browser printing of the Leaflet map -->
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+    var map = L.map('leaflet-map').setView([36.852, 174.768], 13); // Replace with your map initialization code
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    
+    // Initialize leaflet.browser.print plugin
+    L.browserPrint().addTo(map);
+  });
+</script>
+
+<!-- Button to trigger print -->
+<button onclick="window.print();">Print Map</button>
+
+```

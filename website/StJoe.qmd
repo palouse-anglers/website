@@ -1,0 +1,97 @@
+---
+title: "St Joe"
+execute: 
+  echo: false
+  warning: false
+---
+
+{{< include _make-maps.qmd >}}
+
+::: panel-tabset
+## Map  
+```{r}
+
+map_maker(watersheds$sf[['St Joe']])
+
+```
+
+## Flows
+```{=html}
+
+<img  src="http://waterdata.usgs.gov/nwisweb/graph?site_no=12414500&parm_cd=00060"  width="500" height="400" alt="USGS Water-data graph for site 12414500"  /> 
+```
+:::
+
+# NF Clearwater
+
+```{r,message=FALSE, warning=FALSE}
+map_maker(watersheds$sf[['NF Clearwater']])
+```
+
+# Grande Ronde
+
+```{r,message=FALSE, warning=FALSE}
+map_maker(watersheds$sf[['Grande Ronde']])
+
+```
+
+```{r}
+
+
+# Create a Leaflet map
+map <- leaflet() %>%
+  addTiles() %>%
+  setView(lng = -122.032, lat = 37.37, zoom = 10)  # Adjust the center and zoom as needed
+
+# Function to add markers on map click
+addMarkersOnMapClick <- 'function(e) {
+  var map = this;
+  var coord = e.latlng;
+  var marker = L.marker(coord).addTo(map);
+  marker.bindPopup("Latitude: " + coord.lat.toFixed(4) + "<br>Longitude: " + coord.lng.toFixed(4)).openPopup();
+}'
+
+# Create a button to toggle adding markers
+addMarkersButton <- 'L.easyButton("fa-map-marker", function(btn, map) {
+  if (map.addingMarkers) {
+    map.addingMarkers = false;
+    btn.button.style.backgroundColor = "white";
+    map.off("click", addMarkersOnMapClick);
+  } else {
+    map.addingMarkers = true;
+    btn.button.style.backgroundColor = "lightblue";
+    map.on("click", addMarkersOnMapClick);
+  }
+}, "Add Markers")'
+
+# Create a button to clear markers and reset the map
+resetMapButton <- 'L.easyButton("fa-undo", function(btn, map) {
+  map.eachLayer(function (layer) {
+    if (layer instanceof L.Marker) {
+      map.removeLayer(layer);
+    }
+  });
+}, "Clear Markers")'
+
+# Initialize the "addingMarkers" flag to false
+map.addingMarkers = FALSE
+
+# Add the "add markers" and "clear markers" buttons to the map
+map <- htmlwidgets::onRender(map, '
+  function(el, x) {
+    var map = this;
+    map.on("click", function(e) {
+      var coord = e.latlng;
+      var marker = L.marker(coord).addTo(map);
+      marker.bindPopup("Latitude: " + coord.lat.toFixed(4) + "<br>Longitude: " + coord.lng.toFixed(4)).openPopup();
+    });
+    map.addingMarkers = false;
+    map.addControl(addMarkersButton);
+    map.addControl(resetMapButton);
+  }
+')
+
+# Render the map
+map
+
+```

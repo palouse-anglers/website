@@ -1,17 +1,17 @@
 [
   {
-    "objectID": "maps.html",
-    "href": "maps.html",
-    "title": "Maps",
+    "objectID": "StJoe.html",
+    "href": "StJoe.html",
+    "title": "St Joe",
     "section": "",
-    "text": "St. Joe\n\n\n\n\n\n\n\n\nNF Clearwater\n\n\n\n\n\n\n\n\nGrande Ronde"
+    "text": "MapFlows\n\n\n\n\n\n\n\n\n\n\n\n \n\n\n\n\nNF Clearwater\n\n\n\n\n\n\n\n\nGrande Ronde"
   },
   {
-    "objectID": "flows.html",
-    "href": "flows.html",
-    "title": "Flows",
+    "objectID": "NFClear.html",
+    "href": "NFClear.html",
+    "title": "North Fork Clearwater",
     "section": "",
-    "text": "ST Joe River at Calder, ID - 12414500"
+    "text": "MapFlows"
   },
   {
     "objectID": "index.html",
@@ -19,5 +19,26 @@
     "title": "Palouse Anglers",
     "section": "",
     "text": "The Hills Have Flies"
+  },
+  {
+    "objectID": "downloadbtn.html",
+    "href": "downloadbtn.html",
+    "title": "Leaflet Map with PNG Download Button",
+    "section": "",
+    "text": "# Create the Leaflet map\n# Create the Leaflet map and give it an ID\nmymap &lt;- leaflet() %&gt;% addTiles() %&gt;% \n  addMarkers(lng=174.768, lat=-36.852, popup=\"Auckland\")\n\n# Render the Leaflet map with an ID\nmymap %&gt;% \n  htmlwidgets::onRender(\"function(el, x) {\n    el.id = 'leaflet-map';\n  }\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPrint Map"
+  },
+  {
+    "objectID": "NFCDA.html",
+    "href": "NFCDA.html",
+    "title": "North Fork Coeur D’ Alene",
+    "section": "",
+    "text": "MapFlows"
+  },
+  {
+    "objectID": "ronde.html",
+    "href": "ronde.html",
+    "title": "Grande Ronde",
+    "section": "",
+    "text": "MapFlows"
   }
 ]

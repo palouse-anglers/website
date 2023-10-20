@@ -1,0 +1,27 @@
+---
+title: "North Fork Coeur D' Alene"
+execute: 
+  echo: false
+  warning: false
+---
+
+{{< include _make-maps.qmd >}}
+
+::: panel-tabset
+## Map
+
+```{r}
+map_maker(watersheds$sf[['NF CDA']])
+```
+
+## Flows
+
+```{=html}
+
+<img  src="http://waterdata.usgs.gov/nwisweb/graph?site_no=12413000&parm_cd=00060"  width="500" height="400" alt="USGS Water-data graph for site 12413000"  /> 
+
+
+<img  src="http://waterdata.usgs.gov/nwisweb/graph?site_no=12411000&parm_cd=00060"  width="500" height="400" alt="USGS Water-data graph for site 12411000"  /> 
+```
+
+:::

@@ -22,8 +22,10 @@ website:
       - about.qmd
       - text: "Trip Planner"
         menu:
-        - maps.qmd
-        - flows.qmd
+        - StJoe.qmd
+        - NFClear.qmd
+        - ronde.qmd
+        - NFCDA.qmd
     
   
 format:
