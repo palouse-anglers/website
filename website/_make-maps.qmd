@@ -6,12 +6,63 @@ execute:
 
 ```{r}
 library(leaflet)
+library(htmltools)
+library(httr)
 library(leaflet.providers)
 library(leaflet.extras)
 library(tidyverse)
 library(geojsonsf)
 library(sf)
 ```
+
+
+```{r}
+
+#| warning: false
+
+campgrrounds_url <- "https://gis2.idaho.gov/arcgis/rest/services/ADM/Campgrounds/MapServer/0/query"
+
+tent_icon <- makeIcon(
+  iconUrl = "images/tent-48.png",
+  iconWidth = 40, iconHeight = 40
+)
+
+
+params <- list(
+  where = "1=1",
+  outFields = "*",
+  f = "geojson",
+  outSR = 4326
+)
+
+response <- GET(campgrrounds_url, query = params)
+
+content_text <- content(response, "text", encoding = "UTF-8")
+
+campgrounds_sf <- st_read(content_text, quiet = TRUE)
+
+
+popup_table <- map_chr(seq_len(nrow(campgrounds_sf)), function(i) {
+    row_data <- campgrounds_sf[i, ]
+    url <- row_data$URL
+    
+    table_content <- tagList(
+        tags$table(
+            tags$tr(tags$td("Name:"), tags$td(row_data$NAME)),
+            tags$tr(tags$td("Type:"), tags$td(row_data$Type)),
+            tags$tr(tags$td("Rate:"), tags$td(row_data$Rate)),
+            tags$tr(tags$td("Season:"), tags$td(row_data$Season))
+        ),
+        tags$br(),
+        tags$a(href = url, target = "_blank","Visit Website")
+    )
+    
+    as.character(table_content)
+})
+
+
+```
+
 
 ```{r}
 #| warning: false
@@ -31,18 +82,25 @@ opt <- leaflet::WMSTileOptions(format="image/png32", version="1.3.0", minZoom=3,
 
  map <- leaflet() %>%
    addTiles() %>%
-  addWMSTiles(baseUrl = "https://basemap.nationalmap.gov/arcgis/services/USGSHydroCached/MapServer/WMSServer?",layers="0",options = opt,group="Hydro") %>%
+  addWMSTiles(baseUrl = "https://basemap.nationalmap.gov/arcgis/services/USGSHydroCached/MapServer/WMSServer?",layers="0",options = opt,group="Waterways") %>%
  addProviderTiles("Esri.WorldImagery", group="Imagery") %>%
   addProviderTiles("CartoDB.DarkMatter", group="Dark")%>%
  addProviderTiles("Esri.NatGeoWorldMap", group="Topo") %>%
  addProviderTiles("OpenStreetMap", group="Street") %>%
  addPolygons(data= sf_map,group = sf_map$name,fillOpacity = 0) %>%
+    addMarkers(
+    popup = popup_table,
+    data = campgrounds_sf,
+    label = ~NAME,
+    icon = tent_icon,
+    group = "Campgrounds"
+) %>%
   addSearchOSM() %>%
-  addLayersControl(overlayGroups = c(sf_map$name,"Hydro"),
+  addLayersControl(overlayGroups = c(sf_map$name,"Waterways"),
 baseGroups = c("Imagery","Dark","Topo","Street"))%>%
    leaflet.extras::addFullscreenControl() %>%
    leafem::addMouseCoordinates() %>% 
-   hideGroup("Hydro") 
+   hideGroup(c("Waterways","Campgrounds")) 
 
 
  #Function to add markers on map click
