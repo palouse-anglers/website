@@ -1,0 +1,14 @@
+---
+listing:
+  contents: "tying_posts/*/index.qmd"
+  feed: true
+  sort: "date desc"
+  type: grid
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  image-placeholder: images/IMG_3BDE65D40D16-1.JPEG
+  fields: [image,title,categories]
+page-layout: full
+title-block-banner: true
+---

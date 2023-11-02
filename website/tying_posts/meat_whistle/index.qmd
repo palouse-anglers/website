@@ -1,0 +1,50 @@
+---
+title: "John Barr's Meat Whistle"
+date: "2023-10-31"
+categories: [streamers, conehead]
+image: "featured.png"
+image-alt: "Image of John Barr's Meat Whistle fly fishinig fly"
+---
+
+::: grid
+::: g-col-6
+## Recipes
+
+[Tightlinevideo](https://www.youtube.com/@tightlinevideo "Tightlinevideo Youtube channel"){style="color: grey"}
+
+-   Hook: Long-shank jig hook (here a Mustad 32833NP-BN), sizes 1/0-2.
+-   Head: Copper tungsten conehead, large.
+-   Tail/Body: Rusty brown rabbit zonker strip.
+-   Thread: Rusty brown, 6/0 or 140-denier.
+-   Underbody: Copper brown/pearl Sparkle Braid.
+-   Flash: Copper Flashabou.
+-   Legs: Pumpkin Barred Sili Legs.
+-   Collar: Brown Grizzly Saddle Hackle.
+-   Thread dam: Rusty brown, 6/0 or 140-denier
+
+[InTheRiffle](https://www.youtube.com/@InTheRiffle "IntheRiffle Youtube channel"){style="color: grey"}
+
+-   Hook: #02-08 Daiichi 4660 Jig
+-   Cone: Large Copper Conehead
+-   Thread: Rust UTC 140
+-   Rib: Brassie Copper Wire
+-   Body: Red or Orange Holographic Diamond Braid
+-   Tail: Rust or Brown Zonker Strip
+-   Legs: Orange Barred Speckled Crazy Legs
+-   Collar: Brown Select Strung Marabou
+-   Flash: Copper Flashabou
+-   Glue: Brush On ZAP A GAP
+:::
+
+::: g-col-6
+## Videos
+
+### 
+
+{{< video https://youtu.be/u1HX_T7YX1I?si=rpnTpSoZkhL8SMZA >}}
+
+### 
+
+{{< video https://youtu.be/JggK6LmGU3s?si=MNrjmrneJbtzOOfK >}}
+:::
+:::
