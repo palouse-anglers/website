@@ -26,7 +26,10 @@ website:
         - NFClear.qmd
         - GrandeRonde.qmd
         - NFCDA.qmd
-    
+      - href: tying.qmd
+        text: Tying
+      - href: events.qmd
+        text: Events
   
 format:
   html:

@@ -1,5 +1,30 @@
 ---
 title: "About"
+toc: false
+css: text-decoration:none;
 ---
 
-![](images/⁬fish3.png){fig-align="center" width="406"}
+```{=html}
+
+<style>
+  body::before {
+    content: "";
+    position: fixed;
+    top: 10;
+    left: 20;
+    width: 80%;
+    height: 80%;
+    z-index: -1; /* Place the pseudo-element behind other elements */
+    background-image: url("/images/stoneb.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+    transform: rotate(40deg); /* Adjust the degree of rotation as needed */
+  }
+</style>
+```
+### Let's be bad at fishing, together
+
+::: {layout-ncol="3"}
+Palouse Anglers is a Pullman/Moscow based group of anglers and conservationists that enjoy overindulging in fishing
+:::

@@ -1,7 +1,7 @@
 ---
 listing:
   contents: "tying_posts/*/index.qmd"
-  feed: true
+  feed: false
   sort: "date desc"
   type: grid
   categories: true
@@ -12,3 +12,5 @@ listing:
 page-layout: full
 title-block-banner: true
 ---
+
+[![](https://www.discountflies.com/mm5/graphics/00000001/2/Prince-Nymph-Red-Collar.jpg){width="140"}](https://www.clearwaterflycasters.com/flies%20by%20monthcolored.pdf)
