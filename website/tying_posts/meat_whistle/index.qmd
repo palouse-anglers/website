@@ -3,14 +3,11 @@ title: "John Barr's Meat Whistle"
 date: "2023-10-31"
 categories: [streamers, conehead]
 image: "featured.png"
-image-alt: "Image of John Barr's Meat Whistle fly fishinig fly"
+image-alt: "Image of John Barr's Meat Whistle fly fishing fly"
 ---
 
-::: grid
-::: g-col-6
-## Recipes
-
-[Tightlinevideo](https://www.youtube.com/@tightlinevideo "Tightlinevideo Youtube channel"){style="color: grey"}
+::: column-page
+[Tightlinevideo](https://www.youtube.com/@tightlinevideo "Tightlinevideo Youtube channel"){style="color: grey;"}
 
 -   Hook: Long-shank jig hook (here a Mustad 32833NP-BN), sizes 1/0-2.
 -   Head: Copper tungsten conehead, large.
@@ -21,6 +18,8 @@ image-alt: "Image of John Barr's Meat Whistle fly fishinig fly"
 -   Legs: Pumpkin Barred Sili Legs.
 -   Collar: Brown Grizzly Saddle Hackle.
 -   Thread dam: Rusty brown, 6/0 or 140-denier
+
+{{< video https://youtu.be/u1HX_T7YX1I?si=rpnTpSoZkhL8SMZA >}}
 
 [InTheRiffle](https://www.youtube.com/@InTheRiffle "IntheRiffle Youtube channel"){style="color: grey"}
 
@@ -34,17 +33,7 @@ image-alt: "Image of John Barr's Meat Whistle fly fishinig fly"
 -   Collar: Brown Select Strung Marabou
 -   Flash: Copper Flashabou
 -   Glue: Brush On ZAP A GAP
-:::
-
-::: g-col-6
-## Videos
-
-### 
-
-{{< video https://youtu.be/u1HX_T7YX1I?si=rpnTpSoZkhL8SMZA >}}
-
-### 
 
 {{< video https://youtu.be/JggK6LmGU3s?si=MNrjmrneJbtzOOfK >}}
-:::
+
 :::

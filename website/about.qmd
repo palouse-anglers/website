@@ -5,6 +5,7 @@ css: text-decoration:none;
 ---
 
 ```{=html}
+
 <style>
   body::before {
     content: "";
@@ -15,9 +16,10 @@ css: text-decoration:none;
     height: 90%;
     z-index: -1;
     background-image: url("/images/stoneb.png");
-    background-size: cover;
+    background-size: 110%;
     background-repeat: no-repeat;
-    opacity: 0.25;
+    background-position: center center;
+    opacity: 0.15;
     transform: rotate(40deg);
   }
 
@@ -26,14 +28,52 @@ css: text-decoration:none;
       transform: rotate(40deg); /* Reset rotation for smaller screens */
       top: 0;
       left: 0;
-      width: 50%;
-      height: 50%;
+      width: 100%;
+      height: 100%;
+      background-size: 110%;
     }
   }
 </style>
 ```
-### Let's be bad at fishing, together
+```{=html}
 
-::: {layout-ncol="3"}
-Palouse Anglers is a Pullman/Moscow based group of anglers and conservationists that enjoy overindulging in fishing
+<style>
+  .text-container {
+    position: relative;
+    margin-top: 15px;
+  }
+
+  .text-box {
+    position: absolute;
+    top: 25%; /* Adjust as needed */
+    left: 50%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.05); /* Semi-transparent black background */
+    padding: 10px; /* Adjust as needed */
+    color: 'black'; /* Text color (white in this example) */
+    font-size: 18px; /* Adjust as needed */
+    border-radius: 20px;
+  }
+
+  /* Optional: Add some padding or margin to body to avoid edge issues */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .text-header h1 {
+  font-size: 16px; /* Adjust as needed */
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+  
+
+  </style>
+```
+# Let's be bad at fishing, together {.text-header}
+
+::: {.text-container .text-box}
+A group of Inland Northwest anglers and conservationists that enjoy overindulging in fishing
 :::
