@@ -1,0 +1,13 @@
+---
+listing:
+  contents: 
+     - "Events/*/index.qmd"
+  feed: false
+  sort: "title desc"
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  fields: [image,title,subtitle,date]
+page-layout: full
+title-block-banner: false
+---

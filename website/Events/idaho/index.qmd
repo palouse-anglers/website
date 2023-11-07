@@ -1,0 +1,17 @@
+---
+title: "Conservation District Events"
+subtitle: "Idaho"
+date: today
+categories: [Conservation Districts]
+image: https://www.iascd.org/uploads/1/7/5/2/17522397/published/pic-tractors.png
+image-alt: "Conservation District Events"
+toc: true
+---
+
+## Latah {style="text-align: center"}
+
+[![](https://static.wixstatic.com/media/d4ce1d_aed299ff2393416284d70d943975f9d5~mv2.png/v1/fill/w_149,h_143,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Logo.png){width="226"}](https://www.latahswcd.org/updates-and-events)
+
+## IASCD {style="text-align: center"}
+
+[![](https://www.iascd.org/uploads/1/7/5/2/17522397/published/1460061218.png?1533748779){width="214"}](https://www.iascd.org/events.html)

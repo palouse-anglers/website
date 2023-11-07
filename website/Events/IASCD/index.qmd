@@ -1,0 +1,15 @@
+---
+title: "IASCD Conference"
+subtitle: "Boise,Idaho"
+date: "2023-11-07"
+categories: [Conservation Districts]
+image: https://www.iascd.org/uploads/1/7/5/2/17522397/published/header-iascd-web-logo.jpg
+image-alt: "IASCD Conference"
+toc: true
+---
+
+## November 7-9, 2023 The Riverside Hotel
+
+## Boise, ID (2900 W Chinden Blvd. Garden City, ID 83714)
+
+[![](https://www.iascd.org/uploads/1/7/5/2/17522397/published/header-iascd-web-logo.jpg?1695658539){width="471"}](https://www.iascd.org/iascd-conference.html)

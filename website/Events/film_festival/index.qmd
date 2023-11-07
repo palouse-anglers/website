@@ -1,0 +1,21 @@
+---
+title: "Fly Fishing Film Tour"
+subtitle: "Lewiston, ID"
+date: "2023-10-21"
+categories: [fly fishing]
+image: https://d3p2nsbl2om3rr.cloudfront.net/orgs/8/org_event8_2023_F3T-EventGroove-360x470_v1.png
+image-alt: "Fly Fishing Film Tour"
+toc: false
+---
+
+::: {style="text-align: center"}
+# Fly Fishing Film Tour
+
+# Hells Canyon Grand Hotel
+
+# Lewiston, Idaho
+
+# Saturday October 21 7pm
+
+# \$15 in advance from North 40 Fly Shop or \$20 at the door
+:::
