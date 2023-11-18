@@ -1,7 +1,11 @@
 ---
 title: "About"
+subtitle: Let’s be bad at fishing, together
 toc: false
 css: text-decoration:none;
+format:
+  html: 
+    anchor-sections: false
 ---
 
 ```{=html}
@@ -12,15 +16,15 @@ css: text-decoration:none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 90%;
-    height: 90%;
+    width: 85%;
+    height: 85%;
     z-index: -1;
     background-image: url("/images/stoneb.png");
-    background-size: 110%;
+    background-size: 100%;
     background-repeat: no-repeat;
     background-position: center center;
-    opacity: 0.15;
-    transform: rotate(40deg);
+    opacity: 0.19;
+    transform: rotate(23deg);
   }
 
   @media (max-width: 768px) {
@@ -35,45 +39,15 @@ css: text-decoration:none;
   }
 </style>
 ```
-```{=html}
 
-<style>
-  .text-container {
-    position: relative;
-    margin-top: 15px;
-  }
+::: {style="text-align: left"}
+A group of Inland Northwest anglers and conservationists that enjoy overindulging in fishing.
 
-  .text-box {
-    position: absolute;
-    top: 25%; /* Adjust as needed */
-    left: 50%; /* Adjust as needed */
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.05); /* Semi-transparent black background */
-    padding: 10px; /* Adjust as needed */
-    color: 'black'; /* Text color (white in this example) */
-    font-size: 18px; /* Adjust as needed */
-    border-radius: 20px;
-  }
+#### **Conservation**
 
-  /* Optional: Add some padding or margin to body to avoid edge issues */
-  body {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .text-header h1 {
-  font-size: 16px; /* Adjust as needed */
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  margin-bottom: 15px;
-}
-  
+We believe in the strength of community power, leveraging collective efforts for the betterment of rivers and their ecosystems. Our commitment extends to cultivating an informed and engaged community that is involved in the protection and enhancement of our natural environments.
 
-  </style>
-```
-# Let's be bad at fishing, together {.text-header}
+#### **Fishing**
 
-::: {.text-container .text-box}
-A group of Inland Northwest anglers and conservationists that enjoy overindulging in fishing
+As a hub for fly fishing enthusiasts, we provide a wealth of information on locations, techniques, and inspirations. Our goal is to cultivate a vibrant and knowledgeable community of anglers who share a passion for fly fishing. Through this hub, we aim to inspire and connect individuals, fostering a sense of camaraderie among fly fishing enthusiasts.
 :::

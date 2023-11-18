@@ -1,0 +1,30 @@
+---
+title: "Mop Fly"
+date: "2023-11-17"
+categories: [garbage fly]
+image: https://images.north40.com/images/1626746-P/BA_umpqua_mop_fly_chartreuse_1626746.jpg
+image-alt: "Image of mop fly fishing fly"
+---
+
+::: column-page
+[FlyFishFood](https://yt3.ggpht.com/ytc/APkrFKZDHvai5e0t8cFkQSK9ME5aY9_VYLENeYdw0NEV=s88-c-k-c0x00ffffff-no-rj "Youtube channel"){style="color: grey;"}
+
+-   [Hook]{.underline}: Hanak H 400 BL Jig Hook - 10
+-   [Thread]{.underline}: UTC Ultrathread 140 Denier - Brown
+-   [Bead]{.underline}: Hareline Slotted Tungsten Beads - Black - 5/32" (3.8mm)
+-   [Tail/Body]{.underline}: Mop Bodies - Cream
+-   [Collar]{.underline}: SLF Spikey Squirrel Dubbing - Natural Gray
+
+{{< video https://youtu.be/R4FdzLzqBZs?si=RwXVKGBd0mYGJqMu >}}
+
+[TimCammisa](https://www.youtube.com/@TimCammisa "Youtube channel"){style="color: grey"}
+
+-   Hook: Hanak H 450 BL; sizes 10-12
+-   Bead: Silver tungsten; 3.5 mm
+-   Weight: .010 wire
+-   Thread: 6/0 UNI; chartreuse
+-   Body: Mop material - [mop-bodies](https://www.flyfishfood.com/products/mop-bodies)
+-   Head/Thorax: Siman Peacock Dubbing; Peacock Black
+
+{{< video https://youtu.be/A3NhT6hSMOg?si=-FJmSFJAg2_RldxE >}}
+:::

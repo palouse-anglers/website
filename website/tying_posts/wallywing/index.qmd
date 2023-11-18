@@ -1,0 +1,31 @@
+---
+title: "Wally Wing Mayfly"
+date: "2023-11-17"
+categories: [dry fly]
+image: https://i.etsystatic.com/27640916/r/il/f0d236/2895811153/il_1080xN.2895811153_973q.jpg
+image-alt: "Image of wally wing fly fishing fly"
+---
+
+::: column-page
+[Davidson Fly Tying](https://www.youtube.com/@davidsonflytying5004 "Davidson Fly Tying Youtube channel"){style="color: grey;"}
+
+-   Size 14 dry fly hook
+-   White UTC 70 thread
+-   Mallard Flank feathers
+-   Mayfly tails - Gray dry fly dubbing
+-   Dun hackle - Head Cement (sally hansen's hard as nails)
+
+{{< video https://youtu.be/5zYjVDULRno?si=WzyJIAK9sOjJ8Zqa >}}
+
+[InTheRiffle](https://www.youtube.com/@InTheRiffle "IntheRiffle Youtube channel"){style="color: grey"}
+
+- Hook: #10-18 Tiemco 100SPBL or Tiemco 100
+- Thread: Brown Veevus 14/0
+- Tail: Moose Mane
+- Body: Hendrickson Superfine Dubbing
+- Rib: Black UNI 6/0
+- Wing: Natural Mallard Flank
+- Hackle: Dark Barred Ginger Whiting High and Dry Rooster Cape
+
+{{< video https://youtu.be/tBc6J3b10wc?si=wvRfQdTj4A0iIwSu >}}
+:::
