@@ -20,6 +20,7 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+     
       - text: "Trip Planner"
         menu:
         - StJoe.qmd
@@ -30,7 +31,12 @@ website:
         text: Tying
       - href: events.qmd
         text: Events
-  
+      - tiki/tiki.qmd
+      - text: "Conservation"
+        menu:
+        - conservation/dams.qmd
+        - conservation/projects.qmd
+
 format:
   html:
     theme: 
