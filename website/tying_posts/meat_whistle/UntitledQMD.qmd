@@ -1,0 +1,491 @@
+---
+title: "Events"
+format:
+  html: 
+    anchor-sections: false
+---
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+library(rvest)
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#  
+# lines %>% 
+#   rvest::html_elements(css = ".KNiaIk") %>% 
+#   rvest::html_text()
+
+ 
+
+ my_reorder <- function(lines) {
+
+  titles <- lines %>% 
+    html_elements(css = ".KNiaIk") %>% 
+    html_text()
+
+  dates <- titles %>%
+  str_extract("\\d{2}\\.\\d{2}\\.\\d{2}") %>% 
+    lubridate::mdy()
+
+  links <- lines %>% 
+    html_elements("a") %>% 
+    html_attr("href") %>% 
+    keep(~ replace_na(str_detect(.x, "/post/"), FALSE)) %>% 
+    unique()
+
+  tibble(
+    titles = titles,
+    dates = dates,
+    urls = links
+  ) %>% 
+    arrange(desc(dates))
+
+}
+
+lines <- rvest::read_html("https://www.palousecd.org/blog/categories/events")
+
+
+palouseCD_table <- my_reorder(lines) %>%
+  mutate(group="Palouse Conservation District",
+         group_type= "CD",
+         image_url="https://www.conservationjobboard.com/storage/14396/de6wne4RJ9cXv4lR.jpg")
+
+
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+# https://spokanefallstu.org/events/
+# .tribe-events-calendar-list__event-header
+
+ get_lines <- function(url,title_class,date_class){
+ 
+  titles = rvest::read_html(url) %>% 
+    html_elements(css = title_class) %>% 
+    html_text() %>%
+    str_extract(., "(?<=\\n\\t\\t)(.*?)(?=\\t)") %>%
+    str_subset("View Calendar",negate = TRUE)%>%
+    unique()
+  
+  dates <- rvest::read_html(url) %>% 
+    html_elements(css = date_class) %>% 
+    html_text() %>% 
+     tibble("dates"=.) %>%
+     mutate(dates=ifelse(str_detect(dates,"2024"),dates,sub("@","2023 @" ,dates)))%>%
+     tidyr::separate(dates, into=c("dates","times"),sep="@",remove = TRUE) %>%
+     mutate(dates=mdy(dates),
+            times=gsub("\t","",times)) 
+    
+  
+urls <- rvest::read_html(url) %>% 
+    html_elements("a") %>% 
+    html_attr("href") %>% 
+    keep(~ replace_na(str_detect(.x, "/event/"), FALSE)) %>% 
+    unique()
+  
+    tibble(titles,dates,urls)
+}
+  
+
+TU_spokane_falls <- get_lines(url="https://spokanefallstu.org/events/",
+          title_class=".tribe-common-anchor-thin",
+          date_class=".tribe-events-calendar-list__event-datetime") %>%
+          mutate(group="Spokane Falls TU",
+         group_type= "Trout Unlimited",
+         image_url="https://spokanefallstu.org/wp-content/uploads/2019/03/sftu-logo-300h-retina.png") %>%
+         select(-times)
+
+
+
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+read_title <- function(url,title_class){
+ rvest::read_html(url) %>% 
+    html_elements(css = title_class) %>% 
+    html_text()
+}
+
+
+read_date<- function(url,date_class){
+ rvest::read_html(url) %>% 
+    html_elements(css = date_class) %>% 
+    html_text()
+}
+
+read_url <- function(url) {
+  
+  rvest::read_html(url) %>% 
+    html_elements("a") %>% 
+    html_attr("href") 
+}
+
+
+
+
+iru_titles <- read_title(url="https://www.idahorivers.org/events",
+           title_class =".eventlist-title-link" )
+
+
+iru_dates <- read_date(url="https://www.idahorivers.org/events",
+          date_class =".eventlist-datetag-inner" ) %>%
+    gsub("\n","",.)%>%
+    gsub("^\\s+|\\s+$","",.) %>%
+    gsub("[^A-Za-z0-9]","",.) %>%
+    substr(1,5) %>%
+    tibble("date"=.)%>%
+    mutate(date=ifelse(!str_detect(date,"Dec"),paste(date,2024),date),
+           date=lubridate::mdy(date,truncated=1))
+
+iru_urls <- rvest::read_html("https://www.idahorivers.org/events") %>% 
+    html_elements("a") %>% 
+    html_attr("href") %>% 
+    keep(~ replace_na(str_detect(.x, "/events/"), FALSE)) %>% 
+    paste0("https://www.idahorivers.org",.) %>%
+    unique() %>%
+   str_subset(.,"format=ical", negate=TRUE)
+
+  
+iru <- tibble(titles=iru_titles,
+       dates=iru_dates$date,
+       urls=iru_urls,
+       group="Idaho Rivers United",
+       group_type="Conservation",
+       image_url="https://images.squarespace-cdn.com/content/v1/60a6c34d62a20e102bb26220/79c1540c-b5c7-4503-a2f0-ecd98e3bf654/IRU+Logo+color+320x580+-+341+dpi.jpg?format=1500w"
+       )
+
+```
+
+```{r}
+#| echo: false
+#| #| warning: false
+#| message: false
+full_table <-
+    bind_rows(TU_spokane_falls,
+      palouseCD_table) %>%
+    bind_rows(iru) %>%
+   mutate(titles= paste0("<a href='",urls,"' target='_blank'>",titles,"</a>" ),
+          group= paste0("<a href='",image_url,"' target='_blank'>",group,"</a>" )) %>%
+  select(-c(urls,image_url))
+    
+
+
+```
+
+```{r}
+#| echo: false
+#| #| warning: false
+#| message: false
+styling <- '
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://momentjs.com/downloads/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .smallnavbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f1f1f1;
+      padding: 10px;
+    }
+
+    .toggle-container,
+    .dropdown-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-container label,
+    #groupFilter {
+      font-size: 16px;
+      margin-right: 10px;
+      color: #555;
+      --button-width: 3.5em;
+      --button-height: 2em;
+      --toggle-diameter: 1.5em;
+      --button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+      --toggle-shadow-offset: 10px;
+      --toggle-wider: 3em;
+      --color-grey: #cccccc;
+      --color-green: #676;
+    }
+
+    .toggle-container label:hover,
+    #groupFilter:hover {
+      color: #676;
+    }
+
+    .toggle-container .switch input {
+      display: none;
+    }
+
+    .toggle-container .slider {
+      position: relative;
+      display: inline-block;
+      width: var(--button-width);
+      height: var(--button-height);
+      background-color: var(--color-grey);
+      border-radius: calc(var(--button-height) / 2);
+      transition: 0.3s all ease-in-out;
+    }
+
+    .toggle-container .slider::after {
+      content: "";
+      display: inline-block;
+      width: var(--toggle-diameter);
+      height: var(--toggle-diameter);
+      background-color: #fff;
+      border-radius: calc(var(--toggle-diameter) / 2);
+      position: absolute;
+      top: var(--button-toggle-offset);
+      transform: translateX(var(--button-toggle-offset));
+      box-shadow: var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+      transition: 0.3s all ease-in-out;
+    }
+
+    .toggle-container input:checked + .slider {
+      background-color: var(--color-green);
+    }
+
+    .toggle-container input:checked + .slider::after {
+      transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)));
+      box-shadow: calc(var(--toggle-shadow-offset) * -1) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle-container input[type="checkbox"] {
+      display: none;
+    }
+
+    .toggle-container input[type="checkbox"]:active + .slider::after {
+      width: var(--toggle-wider);
+    }
+
+    .toggle-container input[type="checkbox"]:checked:active + .slider::after {
+      transform: translateX(calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset)));
+    }
+
+    #searchInput {
+      font-size: 16px;
+      padding: 8px;
+    }
+
+    #groupFilter {
+      font-size: 16px;
+      padding: 8px;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background-color: white;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      color: red;
+      text-align: center;
+      text-overflow: ellipsis;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    @media screen and (max-width: 767px) {
+     
+      .smallnavbar {
+      flex-direction: column; /* Adjust to a column layout for small screens */
+      align-items: stretch; /* Stretch items to full width */
+    }
+
+    .toggle-container,
+    .dropdown-container {
+      width: 100%; /* Make sure the containers take the full width */
+      margin-bottom: 10px; /* Add some space between elements */
+    }
+     
+      .card-container {
+        grid-template-columns: 1fr;
+      }
+    
+    
+    }
+  </style>
+</head>
+<body>
+
+<div class="smallnavbar">
+
+<input type="text" id="searchInput" onkeyup="filterDropdown()" placeholder="Search for groups">
+
+<select id="groupFilter" onchange="filterCards()">
+  <option value="all">All Groups</option>
+  <option value="Spokane Falls TU">Spokane Falls TU</option>
+  <option value="Idaho Rivers United">Idaho Rivers United</option>
+  <option value="Palouse Conservation District">Palouse Conservation District</option>
+
+</select>
+
+<div class="toggle-container">
+  <h3>Today</h3>
+  <label class="switch">
+    <input type="checkbox" id="todayToggle" onchange="filterCards()"> 
+    <span class="slider"></span>
+  </label>
+</div>
+
+<div class="toggle-container">
+  <h3>This Week</h3>
+  <label class="switch">
+    <input type="checkbox" id="thisWeekToggle" onchange="filterCards()"> 
+    <span class="slider"></span>
+  </label>
+</div>
+</div>
+
+<div class="card-container" id="cardContainer">'
+
+```
+
+```{r}
+#| echo: false
+#| #| warning: false
+#| message: false
+df <- bind_rows(TU_spokane_falls,
+      palouseCD_table) %>%
+      bind_rows(iru) %>%
+    mutate(closest=as.numeric(difftime(Sys.Date(),dates))) %>%
+    filter(closest<=0)%>%
+    arrange(desc(closest))
+
+# Create an empty vector to store HTML cards
+html_cards <- character(nrow(df))
+
+# Loop through each row in the dataframe
+for (i in seq_len(nrow(df))) {
+  # Format HTML card for each row
+  html_cards[i] <- sprintf(
+    ' <div class="card" data-group="%s" data-date="%s">
+    <a href="%s">
+   <img src="%s">
+   <div class="container">
+     <h4><b>%s</b></h4>
+     <p>%s</p>
+     <a href="%s" class="btn">Read more</a>
+   </div>
+</div>',
+    df$group[i],
+    df$dates[i],
+    df$urls[i],
+    df$image_url[i],
+    df$titles[i],
+    df$dates[i],
+    df$urls[i]
+  )
+}
+
+# Combine all HTML cards into a single string
+html_content <- htmltools::HTML(styling,
+                                paste(html_cards, collapse = "\n"),
+
+' </div>
+
+</body>
+
+<script>
+  function filterDropdown() {
+    var input, filter, select, option, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    select = document.getElementById("groupFilter");
+
+    for (i = 0; i < select.options.length; i++) {
+      option = select.options[i];
+      txtValue = option.textContent || option.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        option.style.display = "";
+      } else {
+        option.style.display = "none";
+      }
+    }
+  }
+
+  function filterCards() {
+    var filterGroup = document.getElementById("groupFilter").value;
+    var todayToggle = document.getElementById("todayToggle").checked;
+    var thisWeekToggle = document.getElementById("thisWeekToggle").checked;
+    
+    $(".card").each(function() {
+      var card = $(this);
+      var cardGroup = card.data("group");
+      var cardDate = moment(card.data("date"));
+
+      var showCard = true;
+
+      if (filterGroup !== "all" && cardGroup !== filterGroup) {
+        showCard = false;
+      }
+
+      if (todayToggle) {
+        if (!cardDate.isSame(moment(), "day")) {
+          showCard = false;
+        }
+      }
+
+      if (thisWeekToggle) {
+        var oneWeekLater = moment().add(7, "days");
+        if (
+          cardDate.isBefore(moment(), "day") ||
+          cardDate.isAfter(oneWeekLater, "day")
+        ) {
+          showCard = false;
+        }
+      }
+
+      card.toggle(showCard);
+    });
+  }
+</script>
+
+</html>')
+
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+html_content
+```
